@@ -1,6 +1,7 @@
 import 'package:decrypto/providers/encryption_key.dart';
+import 'package:decrypto/widgets/templates/code_generation_screen.dart';
+import 'package:decrypto/widgets/templates/guess_code_screen.dart';
 import 'package:decrypto/widgets/templates/home_screen.dart';
-import 'package:decrypto/widgets/templates/in_game_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -13,7 +14,6 @@ class MyApp extends StatelessWidget {
       providers: [
         ChangeNotifierProvider(
           create: (_) => EncryptionKey(),
-          child: InGameScreen(),
         ),
         // ChangeNotifierProvider(
         //   create: (_) => HomeScreen(),
@@ -27,8 +27,9 @@ class MyApp extends StatelessWidget {
         ),
         home: HomeScreen(),
         routes: {
-          InGameScreen.routeArgs: (ctx) => InGameScreen()
-          // PropertyDetailsScreen.routeArgs: (ctx) => PropertyDetailsScreen(),
+          HomeScreen.routeArgs: (ctx) => HomeScreen(),
+          CodeGenerationScreen.routeArgs: (ctx) => CodeGenerationScreen(),
+          GuessCodeScreen.routeArgs: (ctx) => GuessCodeScreen()
         },
       ),
     );

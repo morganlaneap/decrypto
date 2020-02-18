@@ -1,26 +1,20 @@
-﻿import 'package:decrypto/widgets/molecules/in_game_actions/in_game_actions.dart';
-import 'package:decrypto/widgets/organsims/word_list/word_list.dart';
+﻿import 'package:decrypto/providers/encryption_key.dart';
+import 'package:decrypto/widgets/organisms/word_list/word_list.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class CodeGenerationScreen extends StatelessWidget {
   static const String routeArgs = "game/code-generation";
 
-  final List<String> wordList;
-
-  const CodeGenerationScreen({this.wordList});
-  
   @override
   Widget build(BuildContext context) {
+    var words = Provider.of<EncryptionKey>(context).filteredWords;
     return Scaffold(
       appBar: AppBar(
-        title: Text("Your Turn"),
+        backgroundColor: Colors.redAccent,
+        title: Text("Back to Words"),
       ),
-      body: Container(
-        child: WordList(
-          wordList: wordList,
-        ),
-      ),
-      floatingActionButton: InGameActions(),
+      body: Container(child: WordList(words: words)),
     );
   }
 }

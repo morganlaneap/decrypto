@@ -1,5 +1,10 @@
+import 'package:decrypto/providers/encryption_key.dart';
+import 'package:decrypto/widgets/templates/code_generation_screen.dart';
+import 'package:decrypto/widgets/templates/guess_code_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
+import 'package:provider/provider.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class InGameActions extends StatelessWidget {
   @override
@@ -23,24 +28,31 @@ class InGameActions extends StatelessWidget {
       shape: CircleBorder(),
       children: [
         SpeedDialChild(
-            child: Icon(Icons.lock_outline),
+            child: Icon(Icons.cached),
             backgroundColor: Colors.red,
             label: 'Generate Code',
             labelStyle: TextStyle(fontSize: 18.0),
-            onTap: () => print('Encrypt')),
+            onTap: () {
+              Provider.of<EncryptionKey>(context, listen: false).generateCode();
+              Navigator.of(context).pushNamed(CodeGenerationScreen.routeArgs);
+            }),
         SpeedDialChild(
-          child: Icon(Icons.lock_open),
+          child: Icon(FontAwesomeIcons.questionCircle),
           backgroundColor: Colors.blue,
           label: 'Guess Code',
           labelStyle: TextStyle(fontSize: 18.0),
-          onTap: () => print('SECOND CHILD'),
+          onTap: () {
+            Navigator.of(context).pushNamed(GuessCodeScreen.routeArgs);
+          },
         ),
         SpeedDialChild(
           child: Icon(Icons.list),
           backgroundColor: Colors.green,
           label: 'View Guesses',
           labelStyle: TextStyle(fontSize: 18.0),
-          onTap: () => print('THIRD CHILD'),
+          onTap: () {
+            print("View Guesses");
+          },
         ),
       ],
     );
