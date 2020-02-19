@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:decrypto/widgets/templates/home_screen.dart';
 
 class GuessCodeScreen extends StatelessWidget {
   static String routeArgs = 'game/guess-code';
@@ -18,7 +19,9 @@ class GuessCodeScreen extends StatelessWidget {
       ),
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.chevron_right),
-        onPressed: () {},
+        onPressed: () {
+          Navigator.of(context).pushNamed(HomeScreen.routeArgs);
+        },
       ),
     );
   }
